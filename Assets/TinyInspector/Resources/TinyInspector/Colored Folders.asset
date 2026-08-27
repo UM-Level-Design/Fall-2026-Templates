@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd104c9cd9a2af47bf9b02418cf9407, type: 3}
+  m_Name: Colored Folders
+  m_EditorClassIdentifier: 
+  EnableCustomFolders: 1
+  FolderIconPosition: 8
+  FolderIconSize: 2
+  Colors:
+  - {r: 0.9254902, g: 0.15294118, b: 0.24705882, a: 0.78431374}
+  - {r: 0.87058824, g: 0.3647059, b: 0.22745098, a: 0.78431374}
+  - {r: 0.9137255, g: 0.52156866, b: 0.21568628, a: 0.78431374}
+  - {r: 0.9529412, g: 0.65882355, b: 0.2, a: 0.78431374}
+  - {r: 0.6156863, g: 0.9019608, b: 0.30588236, a: 0.78431374}
+  - {r: 0.3529412, g: 0.70980394, b: 0.32156864, a: 0.78431374}
+  - {r: 0.14901961, g: 0.52156866, b: 0.29803923, a: 0.78431374}
+  - {r: 0, g: 0.39607844, b: 0.32941177, a: 0.78431374}
+  - {r: 0.21960784, g: 0.34901962, b: 0.7019608, a: 0.78431374}
+  - {r: 0.2, g: 0.53333336, b: 0.87058824, a: 0.78431374}
+  - {r: 0.21176471, g: 0.77254903, b: 0.95686275, a: 0.78431374}
+  - {r: 0.42745098, g: 0.91764706, b: 0.8392157, a: 0.78431374}
+  - {r: 0.8, g: 0.6, b: 1, a: 0.78431374}
+  - {r: 0.6901961, g: 0.47058824, b: 0.78431374, a: 0.78431374}
+  - {r: 0.44313726, g: 0.3019608, b: 0.6039216, a: 0.78431374}
+  Folders:
+  - FolderPath: Assets/TinyInspector/Resources/TinyInspector
+    FolderColor: {r: 0, g: 0, b: 0, a: 0}
+    MarkerID: -1
+  - FolderPath: Assets/Project
+    FolderColor: {r: 0.14901961, g: 0.52156866, b: 0.29803923, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scenes
+    FolderColor: {r: 0.14901961, g: 0.52156866, b: 0.29803923, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scenes/Gameplay
+    FolderColor: {r: 0.14901961, g: 0.52156866, b: 0.29803923, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Data/Input/Filters/Script
+    FolderColor: {r: 0.9254902, g: 0.15294118, b: 0.24705882, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Data/Input/Filters
+    FolderColor: {r: 0.14901961, g: 0.52156866, b: 0.29803923, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Data/Input
+    FolderColor: {r: 0.14901961, g: 0.52156866, b: 0.29803923, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Data
+    FolderColor: {r: 0.14901961, g: 0.52156866, b: 0.29803923, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Async
+    FolderColor: {r: 0.9254902, g: 0.15294118, b: 0.24705882, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Gameplay
+    FolderColor: {r: 0.14901961, g: 0.52156866, b: 0.29803923, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Async/Authority
+    FolderColor: {r: 0.9254902, g: 0.15294118, b: 0.24705882, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Async/Authority/Cursor
+    FolderColor: {r: 0.9254902, g: 0.15294118, b: 0.24705882, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Async/Authority/Input
+    FolderColor: {r: 0.9254902, g: 0.15294118, b: 0.24705882, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Async/Authority/Input/Base
+    FolderColor: {r: 0.9254902, g: 0.15294118, b: 0.24705882, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Gameplay/Levels
+    FolderColor: {r: 0.14901961, g: 0.52156866, b: 0.29803923, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Gameplay/Player
+    FolderColor: {r: 0.14901961, g: 0.52156866, b: 0.29803923, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scenes/Backend
+    FolderColor: {r: 0.9254902, g: 0.15294118, b: 0.24705882, a: 0.78431374}
+    MarkerID: -1
+  - FolderPath: Assets/Project/Scripts/Async/Core
+    FolderColor: {r: 0.9254902, g: 0.15294118, b: 0.24705882, a: 0.78431374}
+    MarkerID: -1
+  Icons:
+  - Icon: {fileID: 2800000, guid: 884e62a634f93a44dabfd11d2770c590, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 2ff059705f541f94897fdee4dd9e6e3f, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: a02faa79e59bcb84a87e22d0bdd08533, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 11f3b5df0266fae41a0bf16aaa5dd20d, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 914db05eeaa1f534da4e243d2df2520d, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: e1504952c5c187a4db2149f58b0f099c, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 021f7f08dcadeb64b866000316652cca, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: a0d1d84741234ac46931ec6f464eab72, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: c348b445c5a8fbc4d8ff02ee08e66394, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: f1e814f93aa030a4cb249ec1c70ca71b, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 811027ccaae79af41bdb5d3628f07bc8, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 83fae7b7d37d5804aa5fc2a2f94460b0, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: ecfe914cb1caa92479fe7135b56e074f, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: f806ffe267d917740b6a88c47ebd7e5a, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: e91c530c7b25b4e43a47d6910a5f413d, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 68ba3f088d7e322468f72854b0713e6a, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: d9675fcb3d1f4cf47adb5b66a9231daf, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 974b5b6dc42ad5a48b09c07957709d20, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: b4c38ca913f177248b64ab57f82890d7, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 2474067cfa89c6246a5fe81894263b4f, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: fc0b082e0f9e30b4ea507104237e5b26, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: ac83232d20760124793b544f9f56615a, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: b7248ae53d74cf245b29692808b4e0a9, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: f47e80f954efeb84dbb44b80aae76cff, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 4b471f83b856a2b4aa56e18316a26146, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: e4731ceecfd07df4382c0c0b07e65f5f, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: f4435ba5d0ece1f4991ee7eaed29d3a5, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 33d67aa92e0dbe645939b365df5e03b0, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: dbb98b6a9d147654f8e6b89aa338b367, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 812c166d3b3947043a71b4fcce09d004, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 734f5c790e9a6f04f871381194d65c44, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: fd500df2848726b4b893f32270991470, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: be6fc4f34b7f7fd448a65112029b4d4a, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 1e437cae1d538b04fbf7d382ea960192, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 72d71e72796aa5c409b2426d59f50892, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: f4cd441f26948114bbaf2a4c50a04357, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 8aaf14befecdd804688a1dfffde2c0ea, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: b0274b1f495c069448d7dcb3ec33524a, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: c1bd50ef2e6d047409241851716605a5, type: 3}
+    IconCategory: Default
+  - Icon: {fileID: 2800000, guid: 521b84496b4ea65468f25a13acf23157, type: 3}
+    IconCategory: Colored
+  - Icon: {fileID: 2800000, guid: b84bc3db8a851794692f2d48bd7d36d1, type: 3}
+    IconCategory: Colored
+  - Icon: {fileID: 2800000, guid: 3b5d6ee61f9549642a221ce7125005b8, type: 3}
+    IconCategory: Colored
+  - Icon: {fileID: 2800000, guid: 57ac7569bf8fe3848a751dcdfcb57ca7, type: 3}
+    IconCategory: Colored
+  - Icon: {fileID: 2800000, guid: 7cc1f9569f0aafb4b83f3b5cd838a2e6, type: 3}
+    IconCategory: Colored
+  - Icon: {fileID: 2800000, guid: e38c9b3b9f1a2de4285b4f520ffcf141, type: 3}
+    IconCategory: Colored
+  - Icon: {fileID: 2800000, guid: f9e5b60862ce2f4448d7449bc80636de, type: 3}
+    IconCategory: Colored
+  - Icon: {fileID: 2800000, guid: e0b0f86beeb10424c82dd907961e53a8, type: 3}
+    IconCategory: Colored
