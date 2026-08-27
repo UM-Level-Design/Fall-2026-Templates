@@ -1,12 +1,11 @@
 using UnityEngine;
-using TinyInspector;
 using LevelDesign.Async.Auth;
 
 namespace LevelDesign.UI
 {
     public class SettingsMenuController : _InputAuth
     {
-        [BoxGroup("Scene Refs")]
+        [Header("Scene Refs")]
         public GameObject settingsMenuToggle;
         private bool settingsOpen;
 

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using TinyInspector;
 using LevelDesign.Async.Auth;
 using UnityEngine.SceneManagement;
 
@@ -11,9 +10,8 @@ namespace LevelDesign.Async
 
     public class BootstrapLoader : MonoBehaviour
     {
-        [BoxGroup("Config")]
+        [Header("Config")]
         [SerializeField] private string bootstrapSceneName = "Bootstrap";
-        [BoxGroup("Config")]
         [SerializeField] private float initTimeoutSeconds = 5f;
 
         private static bool _isLoading;

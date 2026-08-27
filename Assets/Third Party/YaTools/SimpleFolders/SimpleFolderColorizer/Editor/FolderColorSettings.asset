@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ed6a95224d46044999e66337ec4be7, type: 3}
+  m_Name: FolderColorSettings
+  m_EditorClassIdentifier: Yasinski.SimpleFolders.Colorizer.Editor::YaTools.SimpleFolders.SimpleFolderColorizer.Editor.FolderColorSettings
+  folderColors:
+  - guid: dfb42a038610d194aa9179c35a83f7dc
+    color: {r: 0.6156863, g: 0.9411765, b: 0.627451, a: 1}
+  - guid: 4897c1430a1fb324d8924517ae76a433
+    color: {r: 0.6156863, g: 0.9411765, b: 0.627451, a: 1}
+  - guid: 481b3b090886fbd478ad8f62ba248db3
+    color: {r: 0.6156863, g: 0.9411765, b: 0.627451, a: 1}
+  - guid: 23000afc7614367429e77623948a0c68
+    color: {r: 1, g: 0.48235294, b: 0.48235294, a: 1}
+  - guid: b1592b7d111a5a44394d6fe43ae8f7b9
+    color: {r: 0.6156863, g: 0.9411765, b: 0.627451, a: 1}
+  - guid: 519b794f07e654f4a821d6b02d8548d9
+    color: {r: 1, g: 0.48235294, b: 0.48235294, a: 1}
+  - guid: 131f55f5a4cf8994da71498678a18618
+    color: {r: 0.6156863, g: 0.9411765, b: 0.627451, a: 1}
+  - guid: 89c6392fc71342c49ae10e9bb17795fe
+    color: {r: 1, g: 0.48235294, b: 0.48235294, a: 1}
+  - guid: fc0dd0bf9cfe0fa4eaf8ddc9a5bca1bc
+    color: {r: 1, g: 0.48235294, b: 0.48235294, a: 1}
+  - guid: b14440c326d7f0b90a07521c8db1a75a
+    color: {r: 1, g: 0.48235294, b: 0.48235294, a: 1}
+  - guid: b2f06644295a2a64db96070a87fe83a5
+    color: {r: 1, g: 0.48235294, b: 0.48235294, a: 1}
+  - guid: 2d64ef8da62219540b0254e16cd5f1ee
+    color: {r: 1, g: 0.48235294, b: 0.48235294, a: 1}
+  customPresets:
+  - {r: 1, g: 0.48235294, b: 0.48235294, a: 1}
+  - {r: 1, g: 0.60784316, b: 0.48235294, a: 1}
+  - {r: 1, g: 0.8156863, b: 0.48235294, a: 1}
+  - {r: 0.9607843, g: 0.9411765, b: 0.48235294, a: 1}
+  - {r: 0.6156863, g: 0.9411765, b: 0.627451, a: 1}
+  - {r: 0.48235294, g: 0.83137256, b: 0.7058824, a: 1}
+  - {r: 0.48235294, g: 0.72156864, b: 0.9411765, a: 1}
+  - {r: 0.48235294, g: 0.56078434, b: 0.9411765, a: 1}
+  - {r: 0.6901961, g: 0.48235294, b: 0.9411765, a: 1}
+  - {r: 0.9098039, g: 0.48235294, b: 0.9411765, a: 1}
+  - {r: 0.9411765, g: 0.48235294, b: 0.72156864, a: 1}
+  - {r: 0.9411765, g: 0.9411765, b: 0.9411765, a: 1}
+  - {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
+  - {r: 0.3764706, g: 0.3764706, b: 0.3764706, a: 1}
+  - {r: 0.16470589, g: 0.16470589, b: 0.16470589, a: 1}

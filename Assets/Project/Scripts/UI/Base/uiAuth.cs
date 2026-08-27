@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using LevelDesign.Async.Auth;
-using TinyInspector;
 using UnityEngine;
 
 namespace LevelDesign.UI {
     public class uiAuth : _InputAuth
     {
-        [BoxGroup("Config Auth")]
+        [Header("Config")]
         public bool requestInput;
-        [BoxGroup("Config Auth")]
         public bool requestCursor;
 
         void OnEnable()

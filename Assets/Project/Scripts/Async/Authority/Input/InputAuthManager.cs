@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using TinyInspector;
 
 /// Summary
 /// Controller that authorizes or de-authorizes access to each _InputAuth
@@ -16,18 +15,18 @@ namespace LevelDesign.Async.Auth
         public static InputAuthManager Instance { get; private set; }
         public PlayerInputActions InputActions { get; private set; }
 
-        // Root Config for the Auth Managmenet
-        [HorizontalGroup("Parsing")]
-
-        [BoxGroup("Parsing/Request")]
+        [Header("Parsing/Request")]
         [SerializeField] private List<_InputAuth> scriptsRequestingInput = new List<_InputAuth>();
         
-        [BoxGroup("Parsing/Active")]
+        [Header("Parsing/Active")]
         [SerializeField] private List<_InputAuth> currentlyAuthorized = new List<_InputAuth>();
 
         private void Awake()
         {
-            if(Instance != null && Instance != this) { Destroy(this); return; }
+            if(Instance != null && Instance != this) { 
+                Destroy(this); 
+                return;
+            }
 
             Instance = this;
 
@@ -39,7 +38,7 @@ namespace LevelDesign.Async.Auth
         {
             scriptsRequestingInput.RemoveAll(script => script == null);
 
-            if (scriptsRequestingInput.Count != 0)
+            if(scriptsRequestingInput.Count != 0)
             {
                 EvaluateInputAuthorization();
             }
@@ -47,7 +46,7 @@ namespace LevelDesign.Async.Auth
 
         public void RequestInput(_InputAuth requestingScript)
         {
-            if (requestingScript != null && !scriptsRequestingInput.Contains(requestingScript))
+            if(requestingScript != null && !scriptsRequestingInput.Contains(requestingScript))
             {
                 scriptsRequestingInput.Add(requestingScript);
                 EvaluateInputAuthorization();
@@ -56,7 +55,7 @@ namespace LevelDesign.Async.Auth
 
         public void RelinquishRequest(_InputAuth requestingScript)
         {
-            if (requestingScript != null && scriptsRequestingInput.Remove(requestingScript))
+            if(requestingScript != null && scriptsRequestingInput.Remove(requestingScript))
             {
                 EvaluateInputAuthorization();
             }
@@ -64,8 +63,7 @@ namespace LevelDesign.Async.Auth
 
         public bool IsFilterPermitted(float filterValue)
         {
-            if (scriptsRequestingInput.Count == 0)
-                return true;
+            if(scriptsRequestingInput.Count == 0) { return true; }
 
             float highestFilter = GetHighestRequestedFilter();
             return filterValue >= highestFilter;
@@ -75,14 +73,13 @@ namespace LevelDesign.Async.Auth
         {
             currentlyAuthorized.Clear();
 
-            if (scriptsRequestingInput.Count == 0)
-                return;
+            if (scriptsRequestingInput.Count == 0) { return; }
 
             float highestFilter = GetHighestRequestedFilter();
 
             foreach (var script in scriptsRequestingInput)
             {
-                if (ScriptHasChannelAtFilter(script, highestFilter))
+                if(ScriptHasChannelAtFilter(script, highestFilter))
                 {
                     script.aGrantInput();
                     currentlyAuthorized.Add(script);
@@ -94,15 +91,13 @@ namespace LevelDesign.Async.Auth
             }
         }
 
-        /// The highest filter value across every channel every requesting script currently holds.
         private float GetHighestRequestedFilter()
         {
             float highest = float.NegativeInfinity;
 
             foreach (var script in scriptsRequestingInput)
             {
-                if (script._inputChannels == null)
-                    continue;
+                if(script._inputChannels == null) { continue; }
 
                 foreach (var channel in script._inputChannels)
                 {
@@ -119,12 +114,11 @@ namespace LevelDesign.Async.Auth
         /// it only takes one high-priority channel to carry the whole script.
         private bool ScriptHasChannelAtFilter(_InputAuth script, float filterValue)
         {
-            if (script._inputChannels == null)
-                return false;
+            if(script._inputChannels == null) { return false; }
 
             foreach (var channel in script._inputChannels)
             {
-                if (channel != null && Mathf.Approximately(channel.filterVal, filterValue))
+                if(channel != null && Mathf.Approximately(channel.filterVal, filterValue))
                 {
                     return true;
                 }
@@ -135,8 +129,7 @@ namespace LevelDesign.Async.Auth
         
         private void OnDestroy()
         {
-            if (Instance != this)
-                return;
+            if(Instance != this) { return; }
 
             InputActions?.Dispose();
             InputActions = null;

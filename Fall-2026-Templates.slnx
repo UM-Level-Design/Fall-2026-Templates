@@ -1,17 +1,11 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
-  <Project Path="QFSW.QC.Extras.csproj" />
-  <Project Path="QFSW.QC.csproj" />
-  <Project Path="QFSW.QC.Grammar.csproj" />
-  <Project Path="QFSW.QC.Editor.csproj" />
-  <Project Path="QFSW.QC.Parsers.csproj" />
+  <Project Path="CustomInspector.Editor.csproj" />
+  <Project Path="CustomInspector.Helpers.csproj" />
+  <Project Path="CustomInspector.csproj" />
+  <Project Path="CustomInspector.Helpers.Editor.csproj" />
+  <Project Path="Yasinski.SimpleFolders.Colorizer.Editor.csproj" />
+  <Project Path="CustomInspector.Documentation.Editor.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
-  <Project Path="VHierarchy.csproj" />
-  <Project Path="QFSW.QC.Serializers.csproj" />
-  <Project Path="QFSW.QC.Suggestors.csproj" />
-  <Project Path="QFSW.QC.QGUI.csproj" />
-  <Project Path="QFSW.QC.UI.csproj" />
-  <Project Path="QFSW.QC.Demo.csproj" />
-  <Project Path="QFSW.QC.Editor.Tools.csproj" />
-  <Project Path="QFSW.QC.ScanRules.csproj" />
+  <Project Path="CustomInspector.Demo.csproj" />
 </Solution>

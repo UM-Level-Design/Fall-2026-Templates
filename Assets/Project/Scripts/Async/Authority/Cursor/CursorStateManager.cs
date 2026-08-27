@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TinyInspector;
 using UnityEngine;
 
 /// Summary
@@ -18,9 +17,8 @@ namespace LevelDesign.Async.Auth
     {
         public static CursorStateManager Instance { get; private set; }
 
-        [BoxGroup("Debug")]
+        [Header("Debug")]
         [SerializeField] private bool cursorLocked;
-        [BoxGroup("Debug")]
         public List<MonoBehaviour> scriptsRequestingUnlock = new List<MonoBehaviour>();
 
         private void Awake()
