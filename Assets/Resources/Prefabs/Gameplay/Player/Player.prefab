@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7539410055781613663}
   m_Layer: 0
   m_Name: World Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,8 +177,8 @@ Camera:
   m_GameObject: {fileID: 4162500821624962019}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0.30588236, b: 0.44313726, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -358,14 +358,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7441059354308685311}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.1556517, y: -0, z: -0, w: 0.98781204}
+  m_LocalPosition: {x: 0, y: -3.1, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8389953354743518849}
   m_Father: {fileID: 6514476175363529351}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -17.909, y: 0, z: 0}
 --- !u!1 &8865694536164566616
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +419,7 @@ MonoBehaviour:
   playerCamera: {fileID: 1221536180353886574}
   playerCharacter: {fileID: 0}
   characterDataM: {fileID: 6963475195789956524}
+  checkpointM: {fileID: 0}
 --- !u!114 &6304618298330792376
 MonoBehaviour:
   m_ObjectHideFlags: 0

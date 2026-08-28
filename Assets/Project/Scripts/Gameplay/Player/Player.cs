@@ -45,7 +45,8 @@ namespace LevelDesign.Systems.Player
             if(playerCamera != null)
             {
                 playerCamera.UpdateCameraInput();
-                playerCamera.UpdateRotation();
+                // playerCamera.UpdateRotation();
+                playerCamera.gameObject.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
             }
             if(playerCharacter != null && playerCamera != null)
             {
@@ -96,7 +97,7 @@ namespace LevelDesign.Systems.Player
                 playerCharacter = characterDataM.currentMovementController;
                 playerCharacter._Initialize(PSM);
 
-                if(checkpointM != null) {
+                if(checkpointM != null && checkpointM.SpawnPoint != null) {
                     playerCharacter._Teleport(checkpointM.SpawnPoint.position);
                 }
             }

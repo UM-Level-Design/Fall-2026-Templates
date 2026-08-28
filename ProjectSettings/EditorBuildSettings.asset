@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Backend/Bootstrap.unity
     guid: 985572c5ebf799d489a4c65c409c6c45
   - enabled: 1
-    path: Assets/Project/Scenes/Gameplay/Level_Framework.unity
+    path: Assets/Project/Scenes/Gameplay/Test Scene/Level_Framework.unity
     guid: 027e1db0d04a4e240af27a56ece61c72
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
