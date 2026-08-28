@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ArrayOfCMDSettingOfObject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CMDSettingOfObject>
+    <Data xsi:type="xsd:boolean">true</Data>
+    <Identifier>Autosave changes</Identifier>
+  </CMDSettingOfObject>
+</ArrayOfCMDSettingOfObject>

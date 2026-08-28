@@ -15,10 +15,10 @@ namespace LevelDesign.Async.Auth
         public static InputAuthManager Instance { get; private set; }
         public PlayerInputActions InputActions { get; private set; }
 
-        [Header("Parsing/Request")]
+        [Header("All Requests")]
         [SerializeField] private List<_InputAuth> scriptsRequestingInput = new List<_InputAuth>();
         
-        [Header("Parsing/Active")]
+        [Header("Active Requests")]
         [SerializeField] private List<_InputAuth> currentlyAuthorized = new List<_InputAuth>();
 
         private void Awake()

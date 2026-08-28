@@ -19,6 +19,8 @@ namespace LevelDesign.Async.Auth
 
         [Header("Debug")]
         [SerializeField] private bool cursorLocked;
+        
+        [Space]
         public List<MonoBehaviour> scriptsRequestingUnlock = new List<MonoBehaviour>();
 
         private void Awake()
@@ -36,6 +38,7 @@ namespace LevelDesign.Async.Auth
             {
                 cursorLocked = false;
                 UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+                UnityEngine.Cursor.visible = true;
             }
             else
             {

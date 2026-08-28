@@ -5,7 +5,9 @@
   <Project Path="CustomInspector.csproj" />
   <Project Path="CustomInspector.Helpers.Editor.csproj" />
   <Project Path="Yasinski.SimpleFolders.Colorizer.Editor.csproj" />
+  <Project Path="vkg.virgoc.csproj" />
   <Project Path="CustomInspector.Documentation.Editor.csproj" />
+  <Project Path="vkg.virgoc.Editor.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="CustomInspector.Demo.csproj" />
 </Solution>

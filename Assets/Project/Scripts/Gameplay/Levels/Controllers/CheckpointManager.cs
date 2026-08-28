@@ -8,14 +8,14 @@ namespace LevelDesign.Gameplay.Levels
 {
     public class CheckpointManager : MonoBehaviour
     {
-        [Header("Debug - Runtime")]
+        public Transform SpawnPoint { get; private set; }
+
+        [Header("Debug")]
+        [SerializeField] private int currentCheckpointID;
         [SerializeField] private TAG_Checkpoint[] checkpoints;
         [SerializeField] private TAG_CheckpointOverride[] checkpointOverrides;
 
-        [Space]
-        [SerializeField] private TAG_Checkpoint activeCheckpoint;
-        [SerializeField] private TAG_Checkpoint forcedCheckpoint;
-
+        private int overrideIndex = -1;
 
         private void Awake() {
             ScourScene();
@@ -24,10 +24,44 @@ namespace LevelDesign.Gameplay.Levels
         private void ScourScene() {
             checkpoints = FindObjectsByType<TAG_Checkpoint>(FindObjectsInactive.Include, FindObjectsSortMode.None);
             checkpointOverrides = FindObjectsByType<TAG_CheckpointOverride>(FindObjectsInactive.Exclude, FindObjectsSortMode.None); 
+
+            DefineSpawnCheckpoint();
         }    
 
-        #region Commands
-            // Location for things such as loading a new checkpoint through commands
+        private void DefineSpawnCheckpoint() {
+            if(checkpointOverrides != null && checkpointOverrides.Length > 0) {
+                overrideIndex = 0;
+                SetActiveCheckpoint(checkpointOverrides[overrideIndex].transform);
+                return;
+            }
+
+            // Default to the checkpoint with the lowest ID
+            TAG_Checkpoint lowest = null;
+            foreach(TAG_Checkpoint checkpoint in checkpoints) {
+                if(lowest == null || checkpoint.checkpointID < lowest.checkpointID) { 
+                    lowest = checkpoint;
+                }
+            }
+
+            if(lowest != null) {
+                currentCheckpointID = lowest.checkpointID;
+                SetActiveCheckpoint(lowest.transform);
+            }
+        }
+
+        #region Public Accessors
+        public void SetActiveCheckpoint(Transform spawnPoint) {
+            if(spawnPoint == null) { return; }
+
+            SpawnPoint = spawnPoint;
+        }
+
+        public void CycleOverrideCheckpoint() {
+            if(checkpointOverrides == null || checkpointOverrides.Length == 0) { return; }
+
+            overrideIndex = (overrideIndex + 1) % checkpointOverrides.Length;
+            SetActiveCheckpoint(checkpointOverrides[overrideIndex].transform);
+        }
         #endregion
     }
 }

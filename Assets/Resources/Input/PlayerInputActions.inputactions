@@ -7,6 +7,15 @@
             "id": "738863ff-93fd-466c-a312-7145c16b964c",
             "actions": [
                 {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "925d7589-8cf9-4fc2-9074-405ebc3b9aa3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "52a116b6-b130-4940-822f-8a06aa4eff56",
@@ -32,18 +41,31 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Reload",
-                    "type": "Button",
-                    "id": "d0206db8-7345-4c79-9eaa-37bf864e55a1",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "a40912e4-2407-4777-8b96-eaa306bb7cd1",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73bbf074-c613-4f74-ab4b-b6d4663bf763",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "2D Vector",
                     "id": "9e2ead53-ede2-4125-98ec-b422d5400b07",
@@ -195,28 +217,6 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1152ccb1-4347-486c-afd0-80521adf7cb8",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";M&K",
-                    "action": "Reload",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d5f4cf88-7eb9-4cd0-8ddf-6652d9eba3a6",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ArrayOfCMDSettingOfObject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CMDSettingOfObject>
+    <Data xsi:type="xsd:boolean">true</Data>
+    <Identifier>CONSOLE_DISPLAY_TIMESTAMP</Identifier>
+  </CMDSettingOfObject>
+  <CMDSettingOfObject>
+    <Data xsi:type="xsd:boolean">true</Data>
+    <Identifier>CONSOLE_OPEN_ON_ERROR</Identifier>
+  </CMDSettingOfObject>
+  <CMDSettingOfObject>
+    <Data xsi:type="xsd:float">0.65</Data>
+    <Identifier>CONSOLE_SCREEN_HEIGHT_PERCENTAGE</Identifier>
+  </CMDSettingOfObject>
+  <CMDSettingOfObject>
+    <Data xsi:type="xsd:float">0.15</Data>
+    <Identifier>CONSOLE_TOGGLE_TWEEN_DURATION</Identifier>
+  </CMDSettingOfObject>
+</ArrayOfCMDSettingOfObject>

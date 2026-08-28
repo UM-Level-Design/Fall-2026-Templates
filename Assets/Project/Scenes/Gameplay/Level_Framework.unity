@@ -163,10 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35ad996bf930acacbfc1590037671db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Gameplay.Levels.CheckpointManager
+  currentCheckpointID: 0
   checkpoints: []
   checkpointOverrides: []
-  activeCheckpoint: {fileID: 0}
-  forcedCheckpoint: {fileID: 0}
 --- !u!1 &1270066722
 GameObject:
   m_ObjectHideFlags: 0
