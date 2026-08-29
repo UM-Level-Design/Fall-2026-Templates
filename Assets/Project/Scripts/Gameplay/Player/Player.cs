@@ -15,6 +15,7 @@ namespace LevelDesign.Systems.Player
 
         [Header("Managers")]
         [SerializeField] private CharacterDataManager characterDataM;
+        [Space]
         [SerializeField] private CheckpointManager checkpointM;
 
         private Transform cameraFocalTarget;
