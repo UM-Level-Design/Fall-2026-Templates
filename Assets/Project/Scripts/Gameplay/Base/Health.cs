@@ -14,7 +14,9 @@ namespace LevelDesign.Systems
         public UnityEvent OnDeath => onDeath;
 
         [Header("Debug")]
-        [SerializeField] private float current;
+        public float current;
+        public float Max => maxHealth;
+        public float Normalized => maxHealth > 0f ? Current / maxHealth : 0f;
         
         public float Current { get => current; private set => current = value; }
         public bool IsDead => Current <= 0f;
