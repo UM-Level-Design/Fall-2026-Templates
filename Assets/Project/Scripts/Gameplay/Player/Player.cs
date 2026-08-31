@@ -149,8 +149,11 @@ namespace LevelDesign.Systems.Player
 
         public void KillPlayer()
         {
-            Scene activeScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(activeScene.buildIndex);
+            playerCharacter._Teleport(checkpointM.SpawnPoint.position);
+
+            if(healthM != null) {
+                healthM.ResetHealth();
+            }
         }
         #endregion
     }
