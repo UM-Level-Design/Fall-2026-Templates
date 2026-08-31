@@ -1,5 +1,7 @@
 using UnityEngine;
 using LevelDesign.Gameplay.Levels;
+using LevelDesign.Data;
+using UnityEngine.SceneManagement;
 
 namespace LevelDesign.Systems.Player
 {
@@ -18,10 +20,25 @@ namespace LevelDesign.Systems.Player
         [Space]
         [SerializeField] private CheckpointManager checkpointM;
 
+        [Header("Events")]
+        [SerializeField] private KillPlayerEventChannelSO e_killPlayer;
+
         private Transform cameraFocalTarget;
         private Transform spectatorCameraTarget;
 
         #region Unity Calls
+        private void OnEnable() {
+            if(e_killPlayer != null) {
+                e_killPlayer.OnKillRequested += KillPlayer;
+            }
+        }
+
+        private void OnDisable() {
+            if(e_killPlayer != null) {
+                e_killPlayer.OnKillRequested -= KillPlayer;
+            }
+        }
+
         private void Start() {
             playerCamera.Initialize(PSM);
             characterDataM.Initialize();
@@ -125,6 +142,12 @@ namespace LevelDesign.Systems.Player
 
         public void ExitCinematic() {
             PSM.isCinematic = false;
+        }
+
+        public void KillPlayer()
+        {
+            Scene activeScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(activeScene.buildIndex);
         }
         #endregion
     }

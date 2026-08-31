@@ -420,6 +420,7 @@ MonoBehaviour:
   playerCharacter: {fileID: 0}
   characterDataM: {fileID: 6963475195789956524}
   checkpointM: {fileID: 0}
+  e_killPlayer: {fileID: 11400000, guid: ed94c073a594f004f8e8514ded3ec7d8, type: 2}
 --- !u!114 &6304618298330792376
 MonoBehaviour:
   m_ObjectHideFlags: 0

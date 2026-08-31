@@ -107,6 +107,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06eedfd37d38a9b4e91c642751c2b3fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2012609641032503115}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06eedfd37d38a9b4e91c642751c2b3fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1918182467023357977}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06eedfd37d38a9b4e91c642751c2b3fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1987114615948887126}
     - targetCorrespondingSourceObject: {fileID: -8391222552659086748, guid: 06eedfd37d38a9b4e91c642751c2b3fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1346316341471258176}
@@ -258,6 +264,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1918182467023357977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5776466318372940717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5df945b95704142950f3d3d389ba56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Gameplay.Levels.LargeDoorController
+  maxKeysNeeded: 1
+  propAnimator: {fileID: 1987114615948887126}
+  e_KeyCollected: {fileID: 11400000, guid: f7d574a1472aefc429fabc06672b99ab, type: 2}
+--- !u!114 &1987114615948887126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5776466318372940717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070d41477b642184d9fd3b2acc944039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Gameplay.Levels.AnimatorTrigger
+  animationBool: DoorOpen
+  animator: {fileID: 2012609641032503115}
 --- !u!1 &6298050840983741592 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8391222552659086748, guid: 06eedfd37d38a9b4e91c642751c2b3fd, type: 3}

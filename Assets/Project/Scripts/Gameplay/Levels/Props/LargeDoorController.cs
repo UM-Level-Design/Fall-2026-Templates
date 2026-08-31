@@ -11,18 +11,18 @@ namespace LevelDesign.Gameplay.Levels
 
         [Header("Scene Refs")]
         [SerializeField] private AnimatorTrigger propAnimator;
-        [SerializeField] private KeyCollectedEventChannelSO keyCollectedChannel;
+        [SerializeField] private KeyCollectedEventChannelSO e_KeyCollected;
 
         private int currentKeyCount;
 
         private void OnEnable()
         {
-            keyCollectedChannel.OnKeyCollected += HandleKeyCollected;
+            e_KeyCollected.OnKeyCollected += HandleKeyCollected;
         }
  
         private void OnDisable()
         {
-            keyCollectedChannel.OnKeyCollected -= HandleKeyCollected;
+            e_KeyCollected.OnKeyCollected -= HandleKeyCollected;
         }
 
         public void Update() {

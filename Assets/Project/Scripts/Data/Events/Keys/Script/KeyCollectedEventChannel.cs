@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LevelDesign.Data
 {
-    [CreateAssetMenu(fileName = "KeyCollectedEvent", menuName = "ScriptableObjects/Events/Keys", order = 1)]
+    [CreateAssetMenu(fileName = "EventKeyCollected", menuName = "ScriptableObjects/Events/Keys", order = 3)]
     public class KeyCollectedEventChannelSO : ScriptableObject
     {
         public event Action OnKeyCollected;
