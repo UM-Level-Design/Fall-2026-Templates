@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using LevelDesign.Async.Auth;
+using LevelDesign.Gameplay.Levels;
 
 // Summary
 // An extension of the movement controller to handle top down / 2.5d logic
@@ -14,6 +15,7 @@ namespace LevelDesign.Systems.Player
         [SerializeField] private float moveSpeed = 6f;
         [SerializeField] private float turnSpeed = 720f; // deg/sec
         [SerializeField] private float maxSlopeAngle = 40f;
+        [SerializeField] private float lowestYPoint = -50f;
 
         [Header("Ledge Guard")]
         [SerializeField] private float probeDistance = 0.4f;
@@ -35,6 +37,10 @@ namespace LevelDesign.Systems.Player
         private bool onUnapprovedSurface;
         private Vector3 groundNormal = Vector3.up;
 
+        private Vector3 initializedLocation;
+        private Vector3? lastSafeTeleport;
+        private CheckpointManager checkpointManager;
+
         public override void _Initialize(PlayerStateMachine psm)
         {
             rb = GetComponent<Rigidbody>();
@@ -47,6 +53,8 @@ namespace LevelDesign.Systems.Player
             InputAuthManager.Instance.RequestInput(this);
             CursorStateManager.Instance.RequestUnlock(this);
 
+            initializedLocation = transform.position;
+
             _isInitialized = true;
 
             if(cameraTarget == null) { cameraTarget = transform; }
@@ -54,6 +62,11 @@ namespace LevelDesign.Systems.Player
 
         public override void _UpdateBody(float deltaTime)
         {
+            if(transform.position.y <= lowestYPoint) {
+                Respawn();
+                return;
+            }
+
             if(!_inputAuthorized)
             {
                 moveDir = Vector3.zero;
@@ -78,8 +91,7 @@ namespace LevelDesign.Systems.Player
 
             int allButSelf = ~(1 << gameObject.layer);
 
-            if(Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 0.3f,
-                                allButSelf, QueryTriggerInteraction.Ignore))
+            if(Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 0.3f, allButSelf, QueryTriggerInteraction.Ignore))
             {
                 bool approvedLayer = (groundMask & (1 << hit.collider.gameObject.layer)) != 0;
                 float angle = Vector3.Angle(hit.normal, Vector3.up);
@@ -193,6 +205,27 @@ namespace LevelDesign.Systems.Player
             return groundMask & ~(1 << gameObject.layer);
         }
 
+        private Vector3 GetRespawnPosition()
+        {
+            if(checkpointManager != null && checkpointManager.SpawnPoint != null) {
+                return checkpointManager.SpawnPoint.position;
+            }
+
+            if(lastSafeTeleport.HasValue) {
+                return lastSafeTeleport.Value;
+            }
+                
+            return initializedLocation;
+        }
+
+        private void Respawn()
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.position = GetRespawnPosition();
+            rb.useGravity = true;
+        }
+
         protected override void aOnInputDenied()
         {
             moveDir = Vector3.zero;
@@ -202,7 +235,12 @@ namespace LevelDesign.Systems.Player
 
         public override Transform _GetCameraTarget() { return cameraTarget; }
 
-        public override void _Teleport(Vector3 position) { rb.position = position; rb.useGravity = true; }
+        public override void _Teleport(Vector3 position) { 
+            rb.position = position;
+            lastSafeTeleport = position;
+            rb.useGravity = true;
+        }
+
         public override void _SetRotation(Quaternion rotation) { rb.rotation = rotation; }
 
         void OnDestroy() {

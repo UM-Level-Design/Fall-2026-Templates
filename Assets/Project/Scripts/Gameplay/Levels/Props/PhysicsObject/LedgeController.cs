@@ -15,19 +15,30 @@ namespace LevelDesign.Gameplay.Levels
         [SerializeField] private float pushBack = 0.02f;
         [SerializeField] private float skin = 0.05f;
         [SerializeField] private LayerMask groundMask = ~0;
+        [SerializeField] private float lowestYPoint = -50f;
+
+        [Header("Debug")]
         [SerializeField] private bool debugDrawProbes = false;
 
         private Rigidbody rb;
         private BoxCollider box;
+        private Vector3 resetPosition;
 
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
             box = GetComponent<BoxCollider>();
+
+            resetPosition = transform.position;
         }
 
         void FixedUpdate()
         {
+            if(transform.position.y < lowestYPoint) {
+                rb.position = resetPosition; 
+                return;
+            }
+
             int mask = groundMask & ~(1 << gameObject.layer);
 
             Bounds b = box.bounds; // world-space AABB, rotation-proof

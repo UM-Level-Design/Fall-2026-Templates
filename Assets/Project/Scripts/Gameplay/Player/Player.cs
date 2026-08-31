@@ -14,6 +14,7 @@ namespace LevelDesign.Systems.Player
         [SerializeField] private PlayerCamera playerCamera;
         [Space]
         [SerializeField] private _MovementController playerCharacter;
+        [SerializeField] private Health healthM;
 
         [Header("Managers")]
         [SerializeField] private CharacterDataManager characterDataM;
@@ -114,6 +115,7 @@ namespace LevelDesign.Systems.Player
 
                 playerCharacter = characterDataM.currentMovementController;
                 playerCharacter._Initialize(PSM);
+                healthM = playerCharacter.GetComponent<Health>();
 
                 if(checkpointM != null && checkpointM.SpawnPoint != null) {
                     playerCharacter._Teleport(checkpointM.SpawnPoint.position);

@@ -349,6 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Systems.Enemy.RotateObject
   rotationSpeed: 720
   damage: 10
+  damageInterval: 0.3
   hitCollider: {fileID: 8818778049592706635}
 --- !u!1 &8922235555420798174
 GameObject:

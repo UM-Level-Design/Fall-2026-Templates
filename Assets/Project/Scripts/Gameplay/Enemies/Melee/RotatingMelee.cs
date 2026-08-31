@@ -5,12 +5,15 @@ namespace LevelDesign.Systems.Enemy
 {
     public class RotatingMelee : MonoBehaviour
     {
-        public float rotationSpeed = 90f;
-        public float damage = 10f;
+        [Header("Config")]
+        [SerializeField] private float rotationSpeed = 90f;
+        [SerializeField] private float damage = 10f;
+        [SerializeField] private float damageInterval;
 
         [SerializeField] private BoxCollider hitCollider;
 
         private float currentAngle = 0f;
+        private float lastDamageTime;
 
         void Awake()
         {
@@ -45,7 +48,11 @@ namespace LevelDesign.Systems.Enemy
                 if(other == hitCollider) { continue; }
 
                 Health health = other.GetComponentInParent<Health>();
-                if(health != null) { health.TakeDamage(damage); }
+                if(health != null) { 
+                    if(Time.time < lastDamageTime + damageInterval) { return; }
+                    lastDamageTime = Time.time;
+                    health.TakeDamage(damage);
+                } 
             }
         }
     }
