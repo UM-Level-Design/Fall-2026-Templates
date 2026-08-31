@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8399556642273012536}
   - component: {fileID: 8818778049592706635}
   m_Layer: 0
-  m_Name: Hilt
+  m_Name: Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,8 +110,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 47.03099, z: 6.8933325}
+  m_Center: {x: 0, y: 1.450654, z: 0.105937116}
 --- !u!1 &7031018071759382191
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovementController
   moveSpeed: 3
-  stopDistance: 0.5
+  stopDistance: 1
   detectRange: 3
   chaseRange: 8
   searchInterval: 0.5
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Systems.Enemy.RotateObject
   rotationSpeed: 720
   damage: 10
-  hitCollider: {fileID: 8404415252045076010}
+  hitCollider: {fileID: 8818778049592706635}
 --- !u!1 &8922235555420798174
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,9 +361,8 @@ GameObject:
   - component: {fileID: 6738643494693151595}
   - component: {fileID: 6033068838426284801}
   - component: {fileID: 2728830612422466256}
-  - component: {fileID: 8404415252045076010}
   m_Layer: 0
-  m_Name: Blade
+  m_Name: Hilt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -441,24 +440,3 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8404415252045076010
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8922235555420798174}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

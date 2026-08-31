@@ -7,7 +7,7 @@ namespace LevelDesign.Systems.Enemy
     {
         [Header("Movement")]
         public float moveSpeed = 3f;
-        public float stopDistance = 0.5f;
+        public float stopDistance = 1f;
 
         [Header("Detection Ranges")]
         public float detectRange = 3f;
@@ -42,7 +42,9 @@ namespace LevelDesign.Systems.Enemy
             else if(!inChase) { chasing = false; } 
             
             if(!chasing) { return; }
-            transform.position += toTarget.normalized * moveSpeed * Time.deltaTime;
+            if (toTarget.magnitude > stopDistance) {
+                transform.position += toTarget.normalized * moveSpeed * Time.deltaTime;
+            }
         }
 
         private void TryFindTarget()
