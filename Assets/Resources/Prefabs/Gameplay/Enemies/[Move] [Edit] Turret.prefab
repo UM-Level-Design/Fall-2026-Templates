@@ -33,7 +33,6 @@ Transform:
   - {fileID: 1967408482457374882}
   - {fileID: 7385541295906484339}
   - {fileID: 9134422554004783253}
-  - {fileID: 7059816544543751345}
   m_Father: {fileID: 336094005399813809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &961276773153212985
@@ -45,10 +44,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 336094005399813809}
-  - component: {fileID: 3331599276472172639}
-  - component: {fileID: 2644134535483306888}
+  - component: {fileID: 6975790526407088623}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: '[Move] [Edit] Turret'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,11 +66,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5522137841992836723}
+  - {fileID: 7059816544543751345}
   - {fileID: 373413468845173943}
-  - {fileID: 2199889094055910634}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3331599276472172639
+--- !u!114 &6975790526407088623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,45 +81,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 151109f77789f3f4da11b391cc225926, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.TurretController
-  damage: 15
-  fireRate: 1
-  bulletVelocity: 5
-  firePoint: {fileID: 2199889094055910634}
-  projectile: {fileID: 7475389353003180448, guid: 9d8fd9bc56cdfa94d8bdfb25c9907f69, type: 3}
---- !u!114 &2644134535483306888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961276773153212985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e21a91a7a6e55304b99c1c58ff18645f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Gameplay.Health
-  maxHealth: 50
-  onDamageTaken:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3331599276472172639}
-        m_TargetAssemblyTypeName: LevelDesign.Gameplay.Enemies.TurretController,
-          Assembly-CSharp
-        m_MethodName: KillTurret
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  current: 0
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Gameplay.Enemies.TurretController
+  dropsKey: 0
+  keyFab: {fileID: 3574286071040528714, guid: cefb5ce0c28b2ad40ac8ca451c89db72, type: 3}
 --- !u!1 &1059847232770426264
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +96,7 @@ GameObject:
   - component: {fileID: 883029678343383109}
   - component: {fileID: 5517180915586924358}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: LegR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,7 +150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c95d986eade94b4e9001a00c1cd41fa, type: 2}
+  - {fileID: 2100000, guid: ac701691a424b3a488f3773a22b12aba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,7 +186,7 @@ GameObject:
   - component: {fileID: 144467760916650664}
   - component: {fileID: 3767692619946442002}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: LegB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,7 +240,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c95d986eade94b4e9001a00c1cd41fa, type: 2}
+  - {fileID: 2100000, guid: ac701691a424b3a488f3773a22b12aba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -384,7 +346,7 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3331599276472172639}
+      - m_Target: {fileID: 6975790526407088623}
         m_TargetAssemblyTypeName: LevelDesign.Gameplay.Enemies.TurretController,
           Assembly-CSharp
         m_MethodName: KillTurret
@@ -407,10 +369,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7059816544543751345}
+  - component: {fileID: 6373400479497490747}
   - component: {fileID: 205368145986961838}
   - component: {fileID: 3522474438168835151}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,12 +388,30 @@ Transform:
   m_GameObject: {fileID: 6124419114924702201}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.5981601, y: 1.242, z: -0.5620694}
-  m_LocalScale: {x: 0.21334, y: 0.21334001, z: 0.21334001}
+  m_LocalPosition: {x: 0.03316009, y: 0.839, z: -0.52706933}
+  m_LocalScale: {x: 0.21334, y: 0.21334003, z: 0.21334003}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5522137841992836723}
+  m_Children:
+  - {fileID: 2199889094055910634}
+  m_Father: {fileID: 336094005399813809}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &6373400479497490747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6124419114924702201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d3bc8860343bf47a9451317463cafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Gameplay.Enemies.TurretWeapon
+  damage: 15
+  fireRate: 1
+  bulletVelocity: 25
+  firePoint: {fileID: 2199889094055910634}
+  projectile: {fileID: 7475389353003180448, guid: 9d8fd9bc56cdfa94d8bdfb25c9907f69, type: 3}
 --- !u!33 &205368145986961838
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -464,7 +445,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: da995de53f57adc4388dfa69a8c6b405, type: 2}
+  - {fileID: 2100000, guid: 447bac2d95a968242964e84dcb2831ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -500,7 +481,7 @@ GameObject:
   - component: {fileID: 5753790056707235586}
   - component: {fileID: 388743105402575524}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: LegL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,7 +535,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c95d986eade94b4e9001a00c1cd41fa, type: 2}
+  - {fileID: 2100000, guid: ac701691a424b3a488f3773a22b12aba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -590,7 +571,7 @@ GameObject:
   - component: {fileID: 6407552001649997860}
   - component: {fileID: 3131524719786825207}
   m_Layer: 0
-  m_Name: r
+  m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,10 +673,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9154735202754969559}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.032, y: 1.242, z: -0.868}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: -0.005437729, y: -1.5980625, z: 0}
+  m_LocalScale: {x: 4.687352, y: 4.687351, z: 4.687351}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 336094005399813809}
+  m_Father: {fileID: 7059816544543751345}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}

@@ -60,20 +60,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 01dd11e21600e1046b87abd080e5cb2d, type: 3}
+      propertyPath: m_Name
+      value: Button Base
+      objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 01dd11e21600e1046b87abd080e5cb2d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2ef008c5b53400b49ac64df77cb7e5cd, type: 2}
+    - target: {fileID: -516098083770646512, guid: 01dd11e21600e1046b87abd080e5cb2d, type: 3}
+      propertyPath: m_Name
+      value: '[Edit] Trigger'
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 01dd11e21600e1046b87abd080e5cb2d, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: '[Move] Button'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: 01dd11e21600e1046b87abd080e5cb2d, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 2672898416388970847}
   m_SourcePrefab: {fileID: 100100000, guid: 01dd11e21600e1046b87abd080e5cb2d, type: 3}
 --- !u!1 &2970872964477708048 stripped

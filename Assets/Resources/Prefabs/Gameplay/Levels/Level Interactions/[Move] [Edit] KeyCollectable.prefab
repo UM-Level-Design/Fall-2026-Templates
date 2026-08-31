@@ -49,7 +49,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4846,8 +4846,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5880004743108015148}
+  - component: {fileID: 89085822833595557}
   m_Layer: 0
-  m_Name: Collectable
+  m_Name: '[Move] [Edit] KeyCollectable'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4870,6 +4871,53 @@ Transform:
   - {fileID: 759691182184768364}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &89085822833595557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574286071040528714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4f8eb1a6b242444819dce116f4bb06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Gameplay.Levels.ColliderTrigger
+  detectionRadius: 1
+  detectionLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  reArmAfterEmpty: 0
+  triggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: f7d574a1472aefc429fabc06672b99ab, type: 2}
+        m_TargetAssemblyTypeName: LevelDesign.Data.KeyCollectedEventChannelSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3574286071040528714}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  untriggered:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6944641480228413118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4947,7 +4995,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 79d7001a40244cc47a162b2edaf94cd3, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 3175837291067017928}
   m_SourcePrefab: {fileID: 100100000, guid: 79d7001a40244cc47a162b2edaf94cd3, type: 3}
 --- !u!4 &7488056663665572181 stripped

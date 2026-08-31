@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f471471bd7f34734b896e783790fdd5f, type: 2}
     - target: {fileID: 919132149155446097, guid: fcad56eac3d3c394f987e081c1f6376d, type: 3}
       propertyPath: m_Name
-      value: Crate
+      value: '[Move] [Edit] Crate'
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fcad56eac3d3c394f987e081c1f6376d, type: 3}
       propertyPath: m_Layer
@@ -77,41 +77,41 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fcad56eac3d3c394f987e081c1f6376d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6352981082920260633}
+      insertIndex: 1
+      addedObject: {fileID: 7701470060060889774}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fcad56eac3d3c394f987e081c1f6376d, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 4917031920335126477}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fcad56eac3d3c394f987e081c1f6376d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7701470060060889774}
+      insertIndex: 3
+      addedObject: {fileID: 6352981082920260633}
   m_SourcePrefab: {fileID: 100100000, guid: fcad56eac3d3c394f987e081c1f6376d, type: 3}
 --- !u!1 &292856417439815580 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fcad56eac3d3c394f987e081c1f6376d, type: 3}
   m_PrefabInstance: {fileID: 635296228581354189}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &6352981082920260633
-BoxCollider:
+--- !u!114 &7701470060060889774
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292856417439815580}
-  m_Material: {fileID: 13400000, guid: 7075c973c906c6546b0bce1b3b64f5cc, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.02, z: 0.02}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4f2734160412f41b754770c7982f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Gameplay.Level.LedgeController
+  maxDropHeight: 0.4
+  maxSlopeAngle: 75
+  pushBack: 0.6
+  skin: -1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  lowestYPoint: -50
+  debugDrawProbes: 0
 --- !u!54 &4917031920335126477
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,23 +139,24 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 32
   m_CollisionDetection: 1
---- !u!114 &7701470060060889774
-MonoBehaviour:
+--- !u!65 &6352981082920260633
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292856417439815580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4f2734160412f41b754770c7982f68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Gameplay.Level.LedgeController
-  maxDropHeight: 0.4
-  maxSlopeAngle: 75
-  pushBack: 0.6
-  skin: -1
-  groundMask:
+  m_Material: {fileID: 13400000, guid: 7075c973c906c6546b0bce1b3b64f5cc, type: 2}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
-  debugDrawProbes: 0
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02, y: 0.02, z: 0.02}
+  m_Center: {x: 0, y: 0, z: 0}

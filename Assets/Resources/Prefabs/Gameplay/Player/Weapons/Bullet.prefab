@@ -250,7 +250,7 @@ MonoBehaviour:
   sphereCollider: {fileID: 3990879947212320766}
   hitMask:
     serializedVersion: 2
-    m_Bits: 501
+    m_Bits: 1013
   damage: 10
   impactPrefab: {fileID: 7659215243767917252, guid: e3c1b3590a72f334eb93c4baa647a2db, type: 3}
   impactLifetime: 2
