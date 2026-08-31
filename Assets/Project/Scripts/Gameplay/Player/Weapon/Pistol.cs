@@ -1,7 +1,7 @@
 using UnityEngine;
 using LevelDesign.Async.Auth;
 
-namespace LevelDesign.Gameplay.Player
+namespace LevelDesign.Systems.Player
 {
     public class Pistol : _InputAuth
     {

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace LevelDesign.Gameplay
+namespace LevelDesign.Systems
 {
     public class Health : MonoBehaviour
     {

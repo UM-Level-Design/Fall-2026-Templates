@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LevelDesign.Gameplay
+namespace LevelDesign.Systems
 {
     [RequireComponent(typeof(SphereCollider))]
     public class ProjectileBehaviour : MonoBehaviour

@@ -1,6 +1,6 @@
 using UnityEngine;
 using LevelDesign.Async.Auth;
-using LevelDesign.Gameplay;
+using LevelDesign.Systems;
 
 namespace LevelDesign.Gameplay.Enemies
 {
