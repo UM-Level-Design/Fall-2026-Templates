@@ -37,5 +37,9 @@ namespace LevelDesign.Systems
             
             onDamageTaken?.Invoke();
         }
+
+        public void ResetHealth() {
+            Current = maxHealth;
+        }
     }
 }
