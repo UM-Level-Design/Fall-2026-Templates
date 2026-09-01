@@ -111,7 +111,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   lowestYPoint: -50
+  capsuleProbeCount: 8
   debugDrawProbes: 0
+  e_playerKilled: {fileID: 11400000, guid: ed94c073a594f004f8e8514ded3ec7d8, type: 2}
 --- !u!54 &4917031920335126477
 Rigidbody:
   m_ObjectHideFlags: 0

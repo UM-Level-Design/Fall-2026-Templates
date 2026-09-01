@@ -1,4 +1,5 @@
 using UnityEngine;
+using LevelDesign.Data;
 
 namespace LevelDesign.Gameplay.Levels
 {
@@ -19,11 +20,25 @@ namespace LevelDesign.Gameplay.Levels
  
         [Header("Debug")]
         [SerializeField] private bool debugDrawProbes = false;
- 
+
+        [Header("Events")]
+        [SerializeField] private KillPlayerEventChannelSO e_playerKilled; 
+        
         private Rigidbody rb;
         private Collider col;
         private Vector3 resetPosition;
  
+        void OnEnable() {
+            if(e_playerKilled != null) {
+                e_playerKilled.OnKillRequested += ResetObject;
+            }
+        }
+
+        void OnDisable() {
+            if(e_playerKilled != null) {
+                e_playerKilled.OnKillRequested -= ResetObject;
+            }
+        }
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
@@ -35,7 +50,7 @@ namespace LevelDesign.Gameplay.Levels
         void FixedUpdate()
         {
             if(transform.position.y < lowestYPoint) {
-                rb.position = resetPosition;
+                ResetObject();
                 return;
             }
  
@@ -92,6 +107,10 @@ namespace LevelDesign.Gameplay.Levels
                 Vector3 delta = Vector3.ClampMagnitude(correction / offenders, 1f) * pushBack;
                 rb.MovePosition(rb.position + delta);
             }
+        }
+
+        private void ResetObject() {
+            rb.position = resetPosition;
         }
  
         private Vector3[] BuildProbes(Bounds b)
