@@ -49,7 +49,7 @@ namespace LevelDesign.Systems.Player
             }
             if(playerCharacter != null && playerCamera != null)
             {
-                playerCharacter._UpdateBody(Time.deltaTime);
+                playerCharacter._UpdateBody(deltaTime: Time.deltaTime, playerCam: playerCamera.transform);
             }
         }
 
@@ -94,7 +94,7 @@ namespace LevelDesign.Systems.Player
                 if(characterDataM.currentMovementController._isInitialized) { return; }
 
                 playerCharacter = characterDataM.currentMovementController;
-                playerCharacter._Initialize(PSM);
+                playerCharacter._Initialize(psm: PSM, characterdata: characterDataM.currentCharacterData);
 
                 if(checkpointM != null) {
                     playerCharacter._Teleport(checkpointM.SpawnPoint.position);
