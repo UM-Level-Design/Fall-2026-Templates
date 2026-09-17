@@ -50,6 +50,7 @@ namespace LevelDesign.Systems.Player
             if(playerCharacter != null && playerCamera != null)
             {
                 playerCharacter._UpdateBody(deltaTime: Time.deltaTime, playerCam: playerCamera.transform);
+                playerCharacter._UpdateInput();
             }
         }
 
@@ -94,6 +95,8 @@ namespace LevelDesign.Systems.Player
                 if(characterDataM.currentMovementController._isInitialized) { return; }
 
                 playerCharacter = characterDataM.currentMovementController;
+
+                if(playerCharacter._isInitialized) { return; }
                 playerCharacter._Initialize(psm: PSM, characterdata: characterDataM.currentCharacterData);
 
                 if(checkpointM != null) {

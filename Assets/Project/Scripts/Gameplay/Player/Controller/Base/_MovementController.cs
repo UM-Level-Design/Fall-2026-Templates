@@ -13,6 +13,7 @@ namespace LevelDesign.Systems.Player
     {
         [Header("_MovementController/Scene Refs")]
         public CharacterDataSO _characterData;
+        public Transform _visualSpawnPoint;
 
         [Header("_MovementController/Debug")]
         public bool _isInitialized;
@@ -22,6 +23,10 @@ namespace LevelDesign.Systems.Player
         public abstract void _Initialize(PlayerStateMachine psm, CharacterDataSO characterdata);
         public abstract void _RemoteInit();
         public abstract void _UpdateBody(float deltaTime, Transform playerCam);
+        public abstract void _UpdateInput();
+
+        // Visuals Spawn 
+        public abstract void _SpawnVisuals();
 
         // Helpers
         public abstract Transform _GetCameraTarget();

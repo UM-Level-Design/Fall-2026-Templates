@@ -50,6 +50,7 @@ namespace LevelDesign.Systems.Player
         [Header("Debug")]
         [SerializeField] private Stance debugStance;
         [SerializeField] private bool debugSprinting;
+        [SerializeField] private RigInfo currentRigInfo;
 
         public CharacterState state;
 
@@ -92,6 +93,8 @@ namespace LevelDesign.Systems.Player
 
             _characterData = characterdata;
 
+            _SpawnVisuals();
+
             _isInitialized = true;
             aInputInit(true);
             InputAuthManager.Instance.RequestInput(this);
@@ -112,7 +115,6 @@ namespace LevelDesign.Systems.Player
             stanceMirror = state.Stance;
 
             UpdateCameraYaw();
-            UpdateInput();
 
             var cameraHeight = motor.Capsule.height * (isCrouched ? cameraCrouchHeight : cameraStandHeight);
 
@@ -149,7 +151,7 @@ namespace LevelDesign.Systems.Player
             requestedDash = false;
         }
 
-        public void UpdateInput()
+        public override void _UpdateInput()
         {
             if(!_isInitialized || !_inputAuthorized) { 
                 ClearInput(); 
@@ -161,10 +163,10 @@ namespace LevelDesign.Systems.Player
             var move = _input.Move.ReadValue<Vector2>();
             requestedMovement = cameraYaw * Vector3.ClampMagnitude(new Vector3(move.x, 0f, move.y), 1f);
 
-            requestedJump = _input.Jump.WasPressedThisFrame();
+            requestedJump |= _input.Jump.WasPressedThisFrame();
             requestedCrouch = _input.Crouch.IsPressed();
             requestedSprint = _input.Sprint.IsPressed();
-            requestedDash =  _input.Dash.WasPressedThisFrame();
+            requestedDash |=  _input.Dash.WasPressedThisFrame();
         }
 
         public override Transform _GetCameraTarget() => cameraTarget;
@@ -334,7 +336,12 @@ namespace LevelDesign.Systems.Player
 
             if(dashTimeElapsed >= dashDuration)
             {
-                state.Stance = Stance.Air;
+                if(state.Grounded) {
+                    state.Stance = Stance.Stand;
+                }
+                else {
+                    state.Stance = Stance.Air;
+                }
                 currentVelocity = dashDirection * dashSpeed * .5f;
             }
         }
@@ -353,6 +360,14 @@ namespace LevelDesign.Systems.Player
         public void OnMovementHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport) { }
         public void ProcessHitStabilityReport(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, Vector3 atCharacterPosition, Quaternion atCharacterRotation, ref HitStabilityReport hitStabilityReport) { }
         public void OnDiscreteCollisionDetected(Collider hitCollider) { }
+
+        public override void _SpawnVisuals() {
+            currentRigInfo = Instantiate(_characterData.thirdPersonVisuals, _visualSpawnPoint);
+            if(currentRigInfo != null) {
+                currentRigInfo.playerAnimation.m_Controller = this;
+            }
+            
+        }
 
         private void SetCrouched(bool crouch)
         {
