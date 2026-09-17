@@ -40,6 +40,7 @@ namespace LevelDesign.Systems.Player
 
         [Header("Movement / Jumping")]
         [SerializeField] private float jumpSpeed = 20f;
+        [SerializeField] private float coyoteTime = .15f;
         
         [Header("Movement / Dash")]
         [SerializeField] private float dashSpeed = 40f;
@@ -54,6 +55,8 @@ namespace LevelDesign.Systems.Player
 
         private Quaternion cameraYaw = Quaternion.identity;
         private Quaternion requestedRotation = Quaternion.identity;
+
+        private float timeSinceUngrounded;
 
         private Vector3 requestedMovement;
 
@@ -158,10 +161,10 @@ namespace LevelDesign.Systems.Player
             var move = _input.Move.ReadValue<Vector2>();
             requestedMovement = cameraYaw * Vector3.ClampMagnitude(new Vector3(move.x, 0f, move.y), 1f);
 
-            requestedJump |= _input.Jump.WasPressedThisFrame() && state.Grounded;
+            requestedJump = _input.Jump.WasPressedThisFrame();
             requestedCrouch = _input.Crouch.IsPressed();
             requestedSprint = _input.Sprint.IsPressed();
-            requestedDash |=  _input.Jump.WasPressedThisFrame() && !state.Grounded;
+            requestedDash =  _input.Dash.WasPressedThisFrame();
         }
 
         public override Transform _GetCameraTarget() => cameraTarget;
@@ -249,6 +252,7 @@ namespace LevelDesign.Systems.Player
             {
                 awaitingGrounded = false;
                 state.Stance = isCrouched ? Stance.Crouch : Stance.Stand;
+                timeSinceUngrounded = 0f;
 
                 isSprinting = !isCrouched && requestedSprint && requestedMovement.sqrMagnitude > MinPlanarSqrMagnitude;
 
@@ -264,6 +268,7 @@ namespace LevelDesign.Systems.Player
                 }
                 
                 isSprinting = false;
+                timeSinceUngrounded += Time.deltaTime;
 
                 if(requestedMovement.sqrMagnitude > 0f)
                 {
@@ -291,7 +296,7 @@ namespace LevelDesign.Systems.Player
             {
                 requestedJump = false;
 
-                if(grounded)
+                if(grounded || timeSinceUngrounded <= coyoteTime)
                 {
                     motor.ForceUnground();
 

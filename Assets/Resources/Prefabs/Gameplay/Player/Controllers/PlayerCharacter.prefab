@@ -98,9 +98,14 @@ MonoBehaviour:
   sprintSpeed: 11
   airSpeed: 6
   airAcceleration: 45
-  jumpSpeed: 15
+  jumpSpeed: 13
+  coyoteTime: 0.35
+  dashSpeed: 35
+  dashDuration: 0.05
+  dashCooldown: 3
   debugStance: 0
   debugSprinting: 0
+  awaitingGrounded: 0
 --- !u!114 &4785919332191106417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,12 +119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KinematicCharacterController.KinematicCharacterMotor
   Capsule: {fileID: 4750809460749301217}
-  CapsuleRadius: 0.25
+  CapsuleRadius: 0.4
   CapsuleHeight: 2
   CapsuleYOffset: 1
   CapsulePhysicsMaterial: {fileID: 0}
   GroundDetectionExtraDistance: 0
-  MaxStableSlopeAngle: 60
+  MaxStableSlopeAngle: 40
   StableGroundLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -162,7 +167,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
