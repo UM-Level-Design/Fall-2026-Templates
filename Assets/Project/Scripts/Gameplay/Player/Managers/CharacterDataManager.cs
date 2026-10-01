@@ -6,15 +6,17 @@ namespace LevelDesign.Systems.Player
     public class CharacterDataManager : MonoBehaviour
     {
         [Header("Scene Refs")]
+        [SerializeField] private Player player;
         [SerializeField] private Transform CharacterSpawnRoot;
 
         [Header("Config")]
-        [SerializeField] private CharacterDataSO fallbackCharacterData;
+        public CharacterDataSO fallbackCharacterData;
 
         [Header("Debug")]
         public CharacterDataSO currentCharacterData;
         public GameObject currentCharacterObject;
         public _MovementController currentMovementController;
+        public RigInfo currentRigInfo;
 
         public void Initialize() {
             // TODO: Strip this code out if there ends up being a character select system
@@ -46,10 +48,19 @@ namespace LevelDesign.Systems.Player
         private void LinkCharacterController() {
             if(currentCharacterObject != null && currentCharacterObject.TryGetComponent(out _MovementController tempController)) {
                 currentMovementController = tempController;
+                SpawnVisuals();
             }
         }
+        
+        private void SpawnVisuals() {
+            if(currentRigInfo != null) { Destroy(currentRigInfo); }
+            currentRigInfo = Instantiate(currentCharacterData.thirdPersonVisuals, currentMovementController._visualSpawnPoint);
+            if(currentRigInfo != null) {
+                currentRigInfo.playerAnimation.m_Controller = currentMovementController;
+            }  
+        }
 
-        private void ClearCharacter() {
+        public void ClearCharacter() {
             currentCharacterData = null;
             
             if(currentCharacterObject == null) {

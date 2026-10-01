@@ -1,5 +1,4 @@
 using UnityEngine;
-using FIMSpace.FProceduralAnimation;
 
 // Summary
 // Script used for storing and accessing components on the visualized rig
@@ -10,9 +9,8 @@ namespace LevelDesign.Systems.Player
     {
         [Header("Scene Refs")]
         public Transform followerConstraint;
-        public Transform handRoot;
+        public WeaponController handRoot;
         public Animator characterAnimator;
         public _PlayerAnimation playerAnimation;
-        public LegsAnimator legsAnimator;
     }
 }

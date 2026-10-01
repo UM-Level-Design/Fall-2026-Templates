@@ -22,14 +22,13 @@ namespace LevelDesign.Systems.Player
         // Must inherit for basic controls
         public abstract void _Initialize(PlayerStateMachine psm, CharacterDataSO characterdata);
         public abstract void _RemoteInit();
+        
         public abstract void _UpdateBody(float deltaTime, Transform playerCam);
         public abstract void _UpdateInput();
 
-        // Visuals Spawn 
-        public abstract void _SpawnVisuals();
-
         // Helpers
         public abstract Transform _GetCameraTarget();
+        public abstract RigInfo _GetCurrentRigInfo();
         
         // Level Design Calls
         public abstract void _Teleport(Vector3 position);

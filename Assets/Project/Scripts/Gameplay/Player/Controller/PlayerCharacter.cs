@@ -93,8 +93,6 @@ namespace LevelDesign.Systems.Player
 
             _characterData = characterdata;
 
-            _SpawnVisuals();
-
             _isInitialized = true;
             aInputInit(true);
             InputAuthManager.Instance.RequestInput(this);
@@ -298,19 +296,21 @@ namespace LevelDesign.Systems.Player
             {
                 requestedJump = false;
 
-                if(grounded || timeSinceUngrounded <= coyoteTime)
+                if(grounded || timeSinceUngrounded <= coyoteTime && !awaitingGrounded)
                 {
                     motor.ForceUnground();
 
                     var verticalSpeed = Vector3.Dot(currentVelocity, motor.CharacterUp);
                     currentVelocity += motor.CharacterUp * (Mathf.Max(jumpSpeed, verticalSpeed) - verticalSpeed);
+
+                    awaitingGrounded = true;
                 }
             }
         }
 
         private bool CanDash()
         {
-            if(dashCooldownTimer > 0f || state.Stance == Stance.Dash || awaitingGrounded){
+            if(dashCooldownTimer > 0f || state.Stance == Stance.Dash || !state.Grounded){
                 return false;
             }
             return true;
@@ -361,12 +361,14 @@ namespace LevelDesign.Systems.Player
         public void ProcessHitStabilityReport(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, Vector3 atCharacterPosition, Quaternion atCharacterRotation, ref HitStabilityReport hitStabilityReport) { }
         public void OnDiscreteCollisionDetected(Collider hitCollider) { }
 
-        public override void _SpawnVisuals() {
-            currentRigInfo = Instantiate(_characterData.thirdPersonVisuals, _visualSpawnPoint);
-            if(currentRigInfo != null) {
-                currentRigInfo.playerAnimation.m_Controller = this;
+
+        public override RigInfo _GetCurrentRigInfo()
+        {
+            if(currentRigInfo == null) {
+                FindComponent(ref currentRigInfo);
             }
-            
+
+            return currentRigInfo;
         }
 
         private void SetCrouched(bool crouch)

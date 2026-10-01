@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: CharacterData.Basic
   m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Data.CharacterDataSO
   GameplayController: {fileID: 7321372602246079238, guid: e1c7c51e3518fad4e9b63ba62d79b575, type: 3}
+  hitBoxes: {fileID: 4069964262190150501, guid: 593772d48df8cf6459a11d673f186b8a, type: 3}
   thirdPersonVisuals: {fileID: 2161157510865734223, guid: c988b9caf234ad24a916b0a961f3a018, type: 3}
