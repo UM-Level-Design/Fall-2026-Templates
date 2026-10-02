@@ -1,4 +1,5 @@
 ﻿<Solution>
+  <Project Path="NodeCanvas.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="MoreMountains.Tools.csproj" />
   <Project Path="CustomInspector.Editor.csproj" />
@@ -6,6 +7,7 @@
   <Project Path="DTT.RuntimeUtilities.Runtime.csproj" />
   <Project Path="AllIn1VfxAssmebly.csproj" />
   <Project Path="AllIn1VfxDemoScriptAssemblies.csproj" />
+  <Project Path="ParadoxNotion.csproj" />
   <Project Path="DTT.EditorUtilities.Editor.csproj" />
   <Project Path="Lofelt.NiceVibrations.Demo.csproj" />
   <Project Path="CustomInspector.csproj" />
