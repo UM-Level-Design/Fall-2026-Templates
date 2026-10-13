@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using LevelDesign.Async.Auth;
+using TinyInspector;
 
 namespace LevelDesign.Systems.Player
 {
@@ -11,13 +12,16 @@ namespace LevelDesign.Systems.Player
 
     public class PlayerCamera : _InputAuth
     {
-        [Header("Config")]
+        [BoxGroup("Config")]
         [SerializeField] private float currentSensitivity = .08f;
+        [BoxGroup("Config")]
         [SerializeField] private float cinematicPositionSmoothing = 5f;
+        [BoxGroup("Config")]
         [SerializeField] private float cinematicRotationSmoothing = 5f;
 
-        [Header("Scene References")]
+        [BoxGroup("Scene Refs")]
         [SerializeField] private List<Camera> cameraList;
+        [BoxGroup("Scene Refs")]
         [SerializeField] private PlayerStateMachine PSM;
     
         private Vector3 eulerAngles;
@@ -36,6 +40,14 @@ namespace LevelDesign.Systems.Player
                 Debug.LogWarning("Player Camera's Player State Machine Did Not Initialize");
             }
             
+        }
+
+        public void RemoteInit() {
+            foreach(Camera cam in cameraList) {
+                cam.gameObject.SetActive(false);
+            }
+
+            this.enabled = false;
         }
 
         public void UpdateCameraInput() {

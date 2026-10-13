@@ -1,31 +1,31 @@
 using UnityEngine;
-using LevelDesign.Gameplay.Levels;
+using TinyInspector;
 
 namespace LevelDesign.Systems.Player
 {
     public class Player : MonoBehaviour
     {
-        [Header("State Machine")]
+        [BoxGroup("State Machine")]
         [SerializeField] private PlayerStateMachine PSM;
+        [BoxGroup("State Machine")]
+        [SerializeField] private LocalPlayerState LPS;
         
-        [Header("Managers")]
+        [BoxGroup("Controllers")]
         [SerializeField] private PlayerCamera playerCamera;
         [Space]
+        [BoxGroup("Controllers")]
         [SerializeField] private _MovementController playerCharacter;
 
-        [Header("Managers")]
+        [BoxGroup("Managers")]
         [SerializeField] private CharacterDataManager characterDataM;
-        [SerializeField] private CheckpointManager checkpointM;
 
         private Transform cameraFocalTarget;
         private Transform spectatorCameraTarget;
 
         #region Unity Calls
-        private void Start() {
-            playerCamera.Initialize(PSM);
-            characterDataM.Initialize();
-
-            ScourScene();
+        public void Initialize() {
+            if(LPS.isLocalPlayer) { LocalInit(); }
+            else { RemoteInit(); }
         }
 
         private void Update() {
@@ -39,6 +39,16 @@ namespace LevelDesign.Systems.Player
         }
         #endregion
 
+        #region Initializations
+        private void LocalInit() {
+            playerCamera.Initialize(PSM);
+            characterDataM.Initialize();
+        }
+        private void RemoteInit() {
+            playerCamera.RemoteInit();
+        }
+        #endregion
+
         #region Controllers
         // Both
         public void ProcessControllers() {
@@ -49,7 +59,7 @@ namespace LevelDesign.Systems.Player
             }
             if(playerCharacter != null && playerCamera != null)
             {
-                playerCharacter._UpdateBody(Time.deltaTime);
+                playerCharacter._UpdateBody(Time.deltaTime, playerCamera.gameObject.transform);
             }
         }
 
@@ -89,26 +99,27 @@ namespace LevelDesign.Systems.Player
 
         #region Checks
         private void RoutineChecks() {
-            // Character Data
-            if(characterDataM.currentMovementController != null) {
-                if(characterDataM.currentMovementController._isInitialized) { return; }
-
-                playerCharacter = characterDataM.currentMovementController;
-                playerCharacter._Initialize(PSM);
-
-                if(checkpointM != null) {
-                    playerCharacter._Teleport(checkpointM.SpawnPoint.position);
+            if(!LPS.isLocalPlayer) {
+                if(playerCharacter == null) { 
+                    playerCharacter = GetComponentInChildren<_MovementController>();
+                    
+                    if(playerCharacter != null && playerCharacter.enabled) {
+                       playerCharacter._RemoteInit(); 
+                    }
+                }
+                
+                // Update the Data of the Weapon Manager
+                if(playerCharacter != null) {
+                    RigInfo rig = playerCharacter._GetCurrentRigInfo();
                 }
             }
-        }
+            
+            // Character Data
+            if(characterDataM.currentMovementController != null && LPS.isLocalPlayer) {
+                if(!characterDataM.currentMovementController._isInitialized) {
+                    playerCharacter = characterDataM.currentMovementController;
 
-        private void ScourScene() {
-            // Checkpoint Manager
-            if(checkpointM == null) {
-                checkpointM = FindFirstObjectByType<CheckpointManager>();
-
-                if(checkpointM == null) {
-                    Debug.LogWarning($"[{nameof(Player)}] No CheckpointManager found in scene.", this);
+                    playerCharacter._Initialize(PSM, characterDataM.currentCharacterData);
                 }
             }
         }

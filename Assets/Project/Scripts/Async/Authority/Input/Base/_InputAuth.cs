@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using LevelDesign.Data;
+using TinyInspector;
 using System;
 
 // Summary: The 
@@ -9,9 +10,10 @@ using System;
 namespace LevelDesign.Async.Auth {
     public abstract class _InputAuth : MonoBehaviour
     {
-        [Header("Input Auth - Runtime")]
+        [BoxGroup("InputAuth/Config")]
         public List<InputFIlterSO> _inputChannels = new List<InputFIlterSO>();
         
+        [BoxGroup("InputAuth/Debug")]
         public bool _inputAuthorized;
 
         private bool _requestingInput;

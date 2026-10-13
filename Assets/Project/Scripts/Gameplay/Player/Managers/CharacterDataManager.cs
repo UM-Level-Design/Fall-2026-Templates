@@ -1,20 +1,27 @@
 using UnityEngine;
 using LevelDesign.Data;
+using TinyInspector;
 
 namespace LevelDesign.Systems.Player
 {
     public class CharacterDataManager : MonoBehaviour
     {
-        [Header("Scene Refs")]
-        [SerializeField] private Transform CharacterSpawnRoot;
-
-        [Header("Config")]
+        [BoxGroup("Scene Refs")]
+        [SerializeField] private Transform characterSpawnRoot;
+        [BoxGroup("Scene Refs")]
+        [SerializeField] private Transform handSpawnRoot;
+        
+        [BoxGroup("Config")]
         [SerializeField] private CharacterDataSO fallbackCharacterData;
 
-        [Header("Debug")]
+        [BoxGroup("Debug")]
         public CharacterDataSO currentCharacterData;
+        [BoxGroup("Debug")]
         public GameObject currentCharacterObject;
+        [BoxGroup("Debug")]
         public _MovementController currentMovementController;
+        [BoxGroup("Debug")]
+        public ArmController currentArmController;
 
         public void Initialize() {
             // TODO: Strip this code out if there ends up being a character select system
@@ -25,37 +32,50 @@ namespace LevelDesign.Systems.Player
         }
 
         public void LoadCharacterData(CharacterDataSO newCharacter){
-            if(newCharacter == null || newCharacter.GameplayController == null) {
+            if(newCharacter == null || newCharacter.gameplayController == null) {
                 Debug.LogError("Could Not Process Character Data Swap");
                 return;
             }
 
-            if(currentCharacterObject != null) {
-                ClearCharacter();
-            }
+            ClearCharacter();
 
+            // Instantiate Character which then spins up the third person visuals
             currentCharacterData = newCharacter;
-            GameObject characterObject = Instantiate(newCharacter.GameplayController, CharacterSpawnRoot);
-            if(characterObject != null) {
-                currentCharacterObject = characterObject;
+            currentMovementController = Instantiate(newCharacter.gameplayController, characterSpawnRoot);
+            if(currentMovementController != null) {
+                currentCharacterObject = currentMovementController.gameObject;
             }
 
-            LinkCharacterController();
+            // Instantiate Arms for the character
+            if(newCharacter.firstPersonArms != null) {
+                currentArmController = Instantiate(newCharacter.firstPersonArms, handSpawnRoot);
+                BindWeapons(currentArmController.gameObject);
+            }
         }
 
-        private void LinkCharacterController() {
-            if(currentCharacterObject != null && currentCharacterObject.TryGetComponent(out _MovementController tempController)) {
-                currentMovementController = tempController;
+        /// Hooks every Weapon under root up to the current movement controller (bob, air tilt, landing).
+        public void BindWeapons(GameObject root) {
+            if(root == null) { return; }
+            foreach(var t_weapon in root.GetComponentsInChildren<Weapon>(true)) {
+                BindWeapon(t_weapon);
             }
+        }
+
+        /// Call this for weapons spawned/equipped after the character loads.
+        public void BindWeapon(Weapon weapon) {
+            if(weapon != null) { weapon.BindMovement(currentMovementController); }
         }
 
         private void ClearCharacter() {
             currentCharacterData = null;
-            
-            if(currentCharacterObject == null) {
-                return;
+            currentMovementController = null;
+
+            if(currentArmController != null) {
+                Destroy(currentArmController.gameObject);
+                currentArmController = null;
             }
-            else {
+
+            if(currentCharacterObject != null) {
                 Destroy(currentCharacterObject);
                 currentCharacterObject = null;
             }
