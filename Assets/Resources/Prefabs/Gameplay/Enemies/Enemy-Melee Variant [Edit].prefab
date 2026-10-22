@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3501088964196058221, guid: ea415220604e6d748b429570db60b69d, type: 3}
       propertyPath: m_Name
-      value: Enemy-Melee Variant
+      value: 'Enemy-Melee Variant [Edit]'
       objectReference: {fileID: 0}
     - target: {fileID: 3501088964196058221, guid: ea415220604e6d748b429570db60b69d, type: 3}
       propertyPath: m_IsActive
@@ -95,10 +95,6 @@ PrefabInstance:
     - target: {fileID: 7331698818334432460, guid: ea415220604e6d748b429570db60b69d, type: 3}
       propertyPath: associatedCheckpoint
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512658883169362096, guid: ea415220604e6d748b429570db60b69d, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 247
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
