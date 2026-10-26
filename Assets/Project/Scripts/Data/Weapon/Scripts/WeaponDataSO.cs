@@ -21,6 +21,8 @@ namespace LevelDesign.Data
         public float ammoConsumedPerTick;
         [BoxGroup("Config")]
         public float fireRate;
+        [BoxGroup("Config")]
+        public float reloadTime;
 
         [BoxGroup("Refs")]
         public ViewModelMovementSO viewModelMove;

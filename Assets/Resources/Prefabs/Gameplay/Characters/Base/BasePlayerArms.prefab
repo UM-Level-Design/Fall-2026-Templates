@@ -234,7 +234,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7362095878225739705}
-  - component: {fileID: 2181209586139615072}
   - component: {fileID: 3930966425293775012}
   m_Layer: 6
   m_Name: BasePlayerArms
@@ -260,23 +259,6 @@ Transform:
   - {fileID: 6927926563664815563}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2181209586139615072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254697730269984518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56bd460396cd54d4b963d808c688bafd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Systems.Player.Weapon
-  _inputChannels:
-  - {fileID: 11400000, guid: b5d64018384c43942b1297cf6c3d8072, type: 2}
-  _inputAuthorized: 0
-  data: {fileID: 11400000, guid: dd2768cab62eaf944a156d84468d4fe9, type: 2}
-  viewModel: {fileID: 0}
 --- !u!114 &3930966425293775012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,37 +370,6 @@ Transform:
   - {fileID: 3783184725928308709}
   - {fileID: 1715386317655301665}
   m_Father: {fileID: 6576171605863028095}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1823212133763452539
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5341678175647160171}
-  m_Layer: 6
-  m_Name: Abilities
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5341678175647160171
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1823212133763452539}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3028892789910412669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2082491502238308980
 GameObject:
@@ -982,7 +933,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5341678175647160171}
   - {fileID: 2944288183200844862}
   m_Father: {fileID: 7362095878225739705}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1348,6 +1298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2944288183200844862}
+  - component: {fileID: 6433276081891235680}
   m_Layer: 6
   m_Name: Weapon
   m_TagString: Untagged
@@ -1370,6 +1321,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3028892789910412669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6433276081891235680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4906452464386708024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bd460396cd54d4b963d808c688bafd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign.Systems.Player.Weapon
+  _inputChannels:
+  - {fileID: 11400000, guid: b5d64018384c43942b1297cf6c3d8072, type: 2}
+  _inputAuthorized: 0
+  data: {fileID: 11400000, guid: dd2768cab62eaf944a156d84468d4fe9, type: 2}
+  viewModel: {fileID: 6927926563664815563}
+  armController: {fileID: 3930966425293775012}
 --- !u!1 &5274875908367782099
 GameObject:
   m_ObjectHideFlags: 0

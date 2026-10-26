@@ -3,19 +3,24 @@ using UnityEngine;
 using LevelDesign.Data;
 using LevelDesign.Async.Auth;
 using LevelDesign.Tags;
+using LevelDesign.Systems.Player;
+using TinyInspector;
 
 namespace LevelDesign.Systems.Player
 {
     public class Weapon : _InputAuth
     {
+        [BoxGroup("Scene Refs")]
+        [SerializeField] private WeaponDataSO data;
+        [BoxGroup("Scene Refs")]
+        [SerializeField] private Transform viewModel;
+        [BoxGroup("Scene Refs")]
+        [SerializeField] private ArmController armController;
+
         const int BurstCount = 3;
         const float TwoPi = Mathf.PI * 2f;
 
-        [SerializeField] WeaponDataSO data;
-        [SerializeField] Transform viewModel;
-
         public event Action Fired;
-        public event Action DryFired;
 
         public WeaponDataSO Data => data;
         public float CurrentAmmo { get; private set; }
@@ -39,6 +44,10 @@ namespace LevelDesign.Systems.Player
         float lastShotTime = float.NegativeInfinity;
         int shotIndex;
         int burstRemaining;
+        
+        // Reload
+        bool isReloading;
+        float reloadStartTime;
 
         // View model rest pose
         Vector3 restPos;
@@ -102,7 +111,13 @@ namespace LevelDesign.Systems.Player
                 : 0f;
         }
 
-        public void Reload() => CurrentAmmo = data.maxAmmo;
+        public void Reload()
+        {
+            CurrentAmmo = data.maxAmmo;
+            armController.armAnimator.SetTrigger("Reload");
+            reloadStartTime = Time.time;
+            isReloading = true;
+        } 
         #endregion
 
         #region Unity
@@ -147,6 +162,11 @@ namespace LevelDesign.Systems.Player
                 SetMotionState(movementSource._GetVelocity(), movementSource.stanceMirror, movementSource._GetWalkSpeed());
             }
 
+            if(isReloading && (Time.time >= reloadStartTime + data.reloadTime))
+            {
+                isReloading = false;
+            }
+
             HandleFiring();
             UpdateCameraRecoil(t_dt);
             UpdateViewModel(t_dt);
@@ -162,6 +182,7 @@ namespace LevelDesign.Systems.Player
         void HandleFiring()
         {
             if(Time.time < nextFireTime) { return; }
+            if(isReloading) { return; }
 
             if(burstRemaining > 0) {
                 burstRemaining--;
@@ -183,7 +204,7 @@ namespace LevelDesign.Systems.Player
 
             if(CurrentAmmo < data.ammoConsumedPerTick) {
                 burstRemaining = 0;
-                DryFired?.Invoke();
+                Reload();
                 return;
             }
 

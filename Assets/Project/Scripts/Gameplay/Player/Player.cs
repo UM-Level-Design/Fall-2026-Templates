@@ -15,6 +15,8 @@ namespace LevelDesign.Systems.Player
         [Space]
         [BoxGroup("Controllers")]
         [SerializeField] private _MovementController playerCharacter;
+        [BoxGroup("Controlelrs")]
+        [SerializeField] private ArmController playerArmController;
 
         [BoxGroup("Managers")]
         [SerializeField] private CharacterDataManager characterDataM;
@@ -114,12 +116,24 @@ namespace LevelDesign.Systems.Player
                 }
             }
             
-            // Character Data
+            // Controller Search Using Character Data
             if(characterDataM.currentMovementController != null && LPS.isLocalPlayer) {
                 if(!characterDataM.currentMovementController._isInitialized) {
                     playerCharacter = characterDataM.currentMovementController;
 
                     playerCharacter._Initialize(PSM, characterDataM.currentCharacterData);
+                }
+            }
+
+            // Arm Search using Character Data
+            if(characterDataM.currentArmController != null && LPS.isLocalPlayer) {
+                if(!characterDataM.currentArmController.isInitialized) {
+                    playerArmController = characterDataM.currentArmController;
+                    
+                    if(playerCharacter != null)
+                    {
+                        playerArmController.Initialize(playerRef: this, controller: playerCharacter);
+                    }
                 }
             }
         }

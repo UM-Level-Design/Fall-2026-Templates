@@ -17,10 +17,10 @@ MonoBehaviour:
   swayInputScale: 0.05
   swaySmooth: 8
   bobAmount: 0.01
-  bobSpeed: 2
+  bobSpeed: 1.3
   bobBlendSpeed: 6
   bobReferenceSpeed: 5
-  bobMaxScale: 1.6
+  bobMaxScale: 1
   bobPitch: 0.6
   bobYaw: 0.6
   bobRoll: 1.2
