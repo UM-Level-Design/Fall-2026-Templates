@@ -1,9 +1,11 @@
 using UnityEngine;
 using TinyInspector;
+using UnityEngine.UI;
 using QFSW.QC;
 using UnityEditor;
 using PurrNet;
 using PurrNet.Transports;
+using LevelDesign.Async;
 using System;
 using TMPro;
 
@@ -37,6 +39,13 @@ namespace LevelDesign.UI {
         public NetworkManager networkM;
         [BoxGroup("Scene Refs/Network")]
         public TMP_Text lobbyCode;
+        [BoxGroup("Scene Refs/Network")]
+        public TMP_Text inputText;
+
+        [BoxGroup("Scene Refs/Status")]
+        public TMP_Text statusText;
+        [BoxGroup("Scene Refs/Status")]
+        public Image statusLight;
 
         [BoxGroup("Transition")]
         public float transitionDuration = 0.5f;
@@ -57,8 +66,19 @@ namespace LevelDesign.UI {
         private float transitionTime = float.MaxValue;
         #endregion
 
+
         #region Unity Calls
+        private void OnEnable() {
+            networkM.onClientConnectionState += TryTransitionToLobby;
+        }
+
+        private void OnDisable() {
+            networkM.onClientConnectionState -= TryTransitionToLobby;
+        }
+
         private void Update() {
+            ManageStats();
+
             if(transitionTime > transitionDuration) { return; }
 
             transitionTime += Time.unscaledDeltaTime;
@@ -82,7 +102,7 @@ namespace LevelDesign.UI {
                 case MenuState.Lobby:
                     lobbyPage.SetActive(true);
                     break;
-            }
+            }   
         }
         #endregion
 
@@ -125,6 +145,18 @@ namespace LevelDesign.UI {
             lobbyCode.text = new string(code);
             return new string(code);
         }
+
+        private void ManageStats() {
+            statusText.text = networkM.clientState.ToString();
+
+            statusLight.color = (networkM.clientState == ConnectionState.Connected) ? Color.green : Color.yellow;
+        }
+
+        private void TryTransitionToLobby(ConnectionState conn) {
+            if(conn == ConnectionState.Connected && menuState != MenuState.Lobby && menuState != MenuState.HostedLobby) {
+                TransitionToLobby();
+            }
+        }
         #endregion
 
         #region Public Accessors
@@ -142,17 +174,33 @@ namespace LevelDesign.UI {
         public void TransitionToHost() {
             TransitionTo(MenuState.HostedLobby);
             transport.roomName = RandomCodeGenerator();
-            // Start Server
-            // Start Client
+            networkM.StartServer();
+            networkM.StartClient();
         }
 
         [Command("debug_ui_menu_transitionlobby")]
         public void TransitionToLobby() {
             TransitionTo(MenuState.Lobby);
         }
+
+        public void ConnectClient() {
+            transport.roomName = inputText.text;
+            ToastController.Instance.Notify("Connecting");
+            networkM.StartClient();
+        }
+
         public void CloseConnection()
         {
-            
+            networkM.StopClient();
+            networkM.StopServer();
+        }
+
+        public void CopyLobbyCode() {
+            GUIUtility.systemCopyBuffer = lobbyCode.text;
+        }
+
+        public void CloseGame() {
+            Application.Quit();
         }
         #endregion
     }
