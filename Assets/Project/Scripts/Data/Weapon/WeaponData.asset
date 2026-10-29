@@ -16,4 +16,5 @@ MonoBehaviour:
   maxAmmo: 27
   ammoConsumedPerTick: 1
   fireRate: 10
+  reloadTime: 2.4
   viewModelMove: {fileID: 11400000, guid: 5e2aff69af7d0804da1d4560bfc19f74, type: 2}

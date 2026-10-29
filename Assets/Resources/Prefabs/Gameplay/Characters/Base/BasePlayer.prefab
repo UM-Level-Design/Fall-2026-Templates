@@ -1575,7 +1575,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 94626c6ac74e807459347e352097f248, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 083340ee29d49291995a14292ec62b93, type: 2}
+      objectReference: {fileID: 9100000, guid: 1b07d34a3f5f19c4c892db7140f39f0e, type: 2}
     - target: {fileID: 5866666021909216657, guid: 94626c6ac74e807459347e352097f248, type: 3}
       propertyPath: m_CullingMode
       value: 0
@@ -2403,7 +2403,7 @@ MonoBehaviour:
   AnimationFloorLevel: 0.001
   _Editor_Foldout_Setup_LegsList: 1
   _Editor_EnsureCount: 0
-  _Editor_OnValidateTrigger: 1
+  _Editor_OnValidateTrigger: 0
   _EditorAllowAutoUpdateFeetParams: 1
   _EditorCategory: 0
   _EditorSetupCategory: 2

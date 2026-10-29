@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using LevelDesign.Data;
@@ -49,8 +50,36 @@ namespace LevelDesign.Async.Auth {
             }
             else
             {
-                Debug.LogError("Input Auth Manager could not be found.");
+                Debug.LogWarning("Input Auth Manager could not be found. Waiting until it is ready.");
+                _WhenInputAuthManagerReady(() => aInputInit(autoPopulateGame));
             }
+        }
+
+        protected Coroutine _WhenInputAuthManagerReady(Action onReady)
+        {
+            return _WhenReady(() => InputAuthManager.Instance != null, onReady);
+        }
+
+        protected Coroutine _WhenCursorStateManagerReady(Action onReady)
+        {
+            return _WhenReady(() => CursorStateManager.Instance != null, onReady);
+        }
+
+        private Coroutine _WhenReady(Func<bool> isReady, Action onReady)
+        {
+            if(isReady())
+            {
+                onReady();
+                return null;
+            }
+
+            return StartCoroutine(_WaitUntilReady(isReady, onReady));
+        }
+
+        private IEnumerator _WaitUntilReady(Func<bool> isReady, Action onReady)
+        {
+            yield return new WaitUntil(isReady);
+            onReady();
         }
         #endregion
     }

@@ -60,6 +60,8 @@ namespace LevelDesign.Systems.Player
         // Bob & breathing
         float bobTime;
         float bobBlend;
+        float bobWeight = 1f;
+        float bobBlendOut = 12f;
 
         // Air tilt
         float airTilt;
@@ -180,7 +182,7 @@ namespace LevelDesign.Systems.Player
 
         #region Firing
         void HandleFiring()
-        {
+        {            
             if(Time.time < nextFireTime) { return; }
             if(isReloading) { return; }
 
@@ -274,21 +276,25 @@ namespace LevelDesign.Systems.Player
             swayRot = Vector3.Lerp(swayRot, t_rot, t_smooth);
         }
 
-        void UpdateBobAndBreath(float t_dt, out Vector3 t_pos, out Vector3 t_rot)
-        {
-            var t_m = Motion;
-            bobBlend = Mathf.Lerp(bobBlend, moveAmount, Damp(t_m.bobBlendSpeed, t_dt));
+        void UpdateBobAndBreath(float dt, out Vector3 pos, out Vector3 rot) {
+            var m = Motion;
+            bobBlend = Mathf.Lerp(bobBlend, moveAmount, Damp(m.bobBlendSpeed, dt));
+            bobWeight = Mathf.Lerp(bobWeight, triggerHeld ? 0f : 1f, Damp(bobBlendOut, dt));
 
-            bobTime += t_dt * t_m.bobSpeed * bobBlend * TwoPi;
-            if(bobTime > TwoPi) { bobTime -= TwoPi; }
+            bobTime += dt * m.bobSpeed * bobBlend * TwoPi;
+            if(bobTime > TwoPi) {
+                bobTime -= TwoPi;
+            }
 
-            float t_bob = Mathf.Sin(bobTime);
-            float t_dip = Mathf.Abs(t_bob);
+            float bob = Mathf.Sin(bobTime);
+            float dip = Mathf.Abs(bob);
 
-            t_pos = new Vector3(t_bob, -t_dip, 0f) * (t_m.bobAmount * bobBlend);
-            t_rot = new Vector3(t_dip * t_m.bobPitch, t_bob * t_m.bobYaw, -t_bob * t_m.bobRoll) * bobBlend;
+            pos = new Vector3(bob, -dip, 0f) * (m.bobAmount * bobBlend);
+            rot = new Vector3(dip * m.bobPitch, bob * m.bobYaw, -bob * m.bobRoll) * bobBlend;
+            pos.y += Mathf.Sin(Time.time * m.breathSpeed * TwoPi) * m.breathAmount * Mathf.Clamp01(1f - bobBlend);
 
-            t_pos.y += Mathf.Sin(Time.time * t_m.breathSpeed * TwoPi) * t_m.breathAmount * Mathf.Clamp01(1f - bobBlend);
+            pos *= bobWeight;
+            rot *= bobWeight;
         }
 
         void UpdateAirTilt(float t_dt)
