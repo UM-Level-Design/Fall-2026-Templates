@@ -15,6 +15,7 @@ namespace LevelDesign.UI {
             Main,
             Connect,
             HostedLobby,
+            Customization,
             Lobby
         }
 
@@ -56,6 +57,9 @@ namespace LevelDesign.UI {
         [BoxGroup("Transition")]
         public float followUpExpandedScaleY = 14f;
 
+        [BoxGroup("Connection")]
+        public float connectTimeout = 15f;
+
         [BoxGroup("Debug")]
         public MenuState menuState = MenuState.Main;
 
@@ -64,6 +68,9 @@ namespace LevelDesign.UI {
         private float followUpFromY;
         private float followUpToY;
         private float transitionTime = float.MaxValue;
+
+        private float connectElapsed;
+        private bool isConnecting;
         #endregion
 
 
@@ -78,6 +85,7 @@ namespace LevelDesign.UI {
 
         private void Update() {
             ManageStats();
+            UpdateConnectTimeout();
 
             if(transitionTime > transitionDuration) { return; }
 
@@ -87,8 +95,7 @@ namespace LevelDesign.UI {
             SetScaleY(imageDivider, Mathf.Lerp(imageFromY, imageToY, t));
             SetScaleY(followUpDivider, Mathf.Lerp(followUpFromY, followUpToY, t));
 
-            switch(menuState)
-            {
+            switch(menuState) {
                 case MenuState.Main:
                     mainPage.SetActive(true);
                     break;
@@ -102,7 +109,7 @@ namespace LevelDesign.UI {
                 case MenuState.Lobby:
                     lobbyPage.SetActive(true);
                     break;
-            }   
+            }
         }
         #endregion
 
@@ -133,7 +140,7 @@ namespace LevelDesign.UI {
             scale.y = y;
             target.localScale = scale;
         }
-        
+
         private string RandomCodeGenerator() {
             const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
             char[] code = new char[6];
@@ -152,9 +159,30 @@ namespace LevelDesign.UI {
             statusLight.color = (networkM.clientState == ConnectionState.Connected) ? Color.green : Color.yellow;
         }
 
+        private void UpdateConnectTimeout() {
+            if(!isConnecting) { return; }
+
+            connectElapsed += Time.unscaledDeltaTime;
+            if(connectElapsed < connectTimeout) { return; }
+
+            isConnecting = false;
+            networkM.StopClient();
+            ToastController.Instance.Notify("Connection Timed Out");
+        }
+
         private void TryTransitionToLobby(ConnectionState conn) {
-            if(conn == ConnectionState.Connected && menuState != MenuState.Lobby && menuState != MenuState.HostedLobby) {
-                TransitionToLobby();
+            if(conn == ConnectionState.Connected) {
+                isConnecting = false;
+
+                if(menuState != MenuState.Lobby && menuState != MenuState.HostedLobby) {
+                    TransitionToLobby();
+                }
+                return;
+            }
+
+            if(conn == ConnectionState.Disconnected && isConnecting) {
+                isConnecting = false;
+                ToastController.Instance.Notify("Connection Failed");
             }
         }
         #endregion
@@ -184,13 +212,17 @@ namespace LevelDesign.UI {
         }
 
         public void ConnectClient() {
+            if(isConnecting) { return; }
+
             transport.roomName = inputText.text;
             ToastController.Instance.Notify("Connecting");
+            connectElapsed = 0f;
+            isConnecting = true;
             networkM.StartClient();
         }
 
-        public void CloseConnection()
-        {
+        public void CloseConnection() {
+            isConnecting = false;
             networkM.StopClient();
             networkM.StopServer();
         }
